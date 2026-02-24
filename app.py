@@ -19,7 +19,19 @@ st.set_page_config(
 # -------------------------------------------------
 @st.cache_resource
 def load_model():
-    return joblib.load("models/best_model.joblib")
+    try:
+        return joblib.load("models/best_model.joblib")
+    except:
+        # Retrain if model incompatible
+        df = pd.read_csv("data/diabetes.csv")
+        X = df.drop("Outcome", axis=1)
+        y = df["Outcome"]
+
+        model = RandomForestClassifier()
+        model.fit(X, y)
+
+        joblib.dump(model, "models/best_model.joblib")
+        return model
 
 model = load_model()
 
