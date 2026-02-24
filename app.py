@@ -19,7 +19,7 @@ st.set_page_config(
 # -------------------------------------------------
 @st.cache_resource
 def load_model():
-    return joblib.load("best_model.joblib")
+    return joblib.load("models/best_model.joblib")
 
 model = load_model()
 
