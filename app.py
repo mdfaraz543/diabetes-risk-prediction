@@ -34,7 +34,7 @@ def load_model():
     model.fit(X, y)
 
     return model
-
+model = load_model()
 # -------------------------------------------------
 # CLEAN MODERN CSS (Neutral Colors + Animations)
 # -------------------------------------------------
