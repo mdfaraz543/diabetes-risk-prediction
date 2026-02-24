@@ -54,3 +54,11 @@ git commit -m "Added professional README"
 git push
 
 ```
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](assets/home.png)
+
+### Prediction Page
+![Prediction Page](assets/prediction.png)
