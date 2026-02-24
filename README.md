@@ -40,6 +40,8 @@ The system provides:
 ---
 
 ## 📂 Project Structure
+
+```
 diabetes-risk-prediction/
 │── app.py
 │── train.py
@@ -50,7 +52,7 @@ diabetes-risk-prediction/
 ├── models/
 ├── notebook/
 └── assets/
-
+```
 
 ---
 
@@ -101,16 +103,16 @@ streamlit run app.py
 
 ## 🔮 Future Improvements
 
-Deploy on Streamlit Cloud
+- Deploy on Streamlit Cloud
+- Improve model performance with hyperparameter tuning
+- Add data visualization dashboard
+- Add user authentication system
 
-Improve model performance with hyperparameter tuning
-
-Add data visualization dashboard
-
-Add user authentication system
+---
 
 ## 👨‍💻 Author
 
-Mohammed Faraz
-Aspiring Machine Learning Engineer
-GitHub: https://github.com/mdfaraz543
+**Mohammed Faraz**  
+Aspiring Machine Learning Engineer  
+
+🔗 GitHub: [mdfaraz543](https://github.com/mdfaraz543)
