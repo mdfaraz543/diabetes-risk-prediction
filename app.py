@@ -280,7 +280,7 @@ with right:
         ]
 
         input_df = input_df[expected_columns]
-
+        input_df = input_df.reindex(columns=model.feature_names_in_)
         probability = model.predict_proba(input_df)[0][1] * 100
 
         if probability < 40:
