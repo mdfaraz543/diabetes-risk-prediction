@@ -99,7 +99,6 @@ streamlit run app.py
 ### 📊 Risk Prediction Output
 ![Prediction](assets/prediction.png)
 
-```
 ## 🔮 Future Improvements
 
 Deploy on Streamlit Cloud
