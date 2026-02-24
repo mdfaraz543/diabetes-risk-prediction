@@ -1,4 +1,8 @@
 # 🩺 Diabetes Risk Prediction System
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Streamlit](https://img.shields.io/badge/Framework-Streamlit-red)
+![ML](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 A Machine Learning based web application that predicts the risk of Diabetes using health parameters.  
 Built using Python, Scikit-learn, and Streamlit with a clean and interactive user interface.
@@ -12,7 +16,7 @@ Built using Python, Scikit-learn, and Streamlit with a clean and interactive use
 
 ## 📌 Project Overview
 
-This project uses a supervised Machine Learning model trained on the PIMA Indians Diabetes Dataset to predict whether a person is at risk of diabetes based on medical input parameters.
+This project implements a supervised Machine Learning classification model trained on the PIMA Indians Diabetes Dataset to predict whether a person is at risk of diabetes based on medical input features.
 
 The system allows:
 - Real-time prediction
@@ -79,7 +83,17 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-📸 Screenshots
+## 📸 Application Preview
 
-![Home Page](assets/home.png)
-![Prediction Page](assets/prediction.png)
+### 🏠 Home Interface
+![Home](assets/home.png)
+
+### 📊 Risk Prediction Output
+![Prediction](assets/prediction.png)
+
+## 🔮 Future Improvements
+
+- Deploy on Streamlit Cloud
+- Add user authentication
+- Improve model performance with advanced tuning
+- Add visualization dashboard
