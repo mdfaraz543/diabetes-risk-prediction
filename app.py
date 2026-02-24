@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-import joblib
 import plotly.graph_objects as go
 import time
+from sklearn.ensemble import RandomForestClassifier
 
 # -------------------------------------------------
 # PAGE CONFIG
@@ -19,19 +19,14 @@ st.set_page_config(
 # -------------------------------------------------
 @st.cache_resource
 def load_model():
-    try:
-        return joblib.load("models/best_model.joblib")
-    except:
-        # Retrain if model incompatible
-        df = pd.read_csv("data/diabetes.csv")
-        X = df.drop("Outcome", axis=1)
-        y = df["Outcome"]
+    df = pd.read_csv("data/diabetes.csv")
+    X = df.drop("Outcome", axis=1)
+    y = df["Outcome"]
 
-        model = RandomForestClassifier()
-        model.fit(X, y)
+    model = RandomForestClassifier(random_state=42)
+    model.fit(X, y)
 
-        joblib.dump(model, "models/best_model.joblib")
-        return model
+    return model
 
 model = load_model()
 
@@ -268,7 +263,18 @@ with right:
         }
 
         input_df = pd.DataFrame([input_data])
-        input_df = input_df[model.feature_names_in_]
+        expected_columns = [
+            "Pregnancies",
+            "Glucose",
+            "BloodPressure",
+            "SkinThickness",
+            "Insulin",
+            "BMI",
+            "DiabetesPedigreeFunction",
+            "Age"
+        ]
+
+        input_df = input_df[expected_columns]
 
         probability = model.predict_proba(input_df)[0][1] * 100
 
