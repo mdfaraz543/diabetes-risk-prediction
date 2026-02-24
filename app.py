@@ -20,15 +20,20 @@ st.set_page_config(
 @st.cache_resource
 def load_model():
     df = pd.read_csv("data/diabetes.csv")
-    X = df.drop("Outcome", axis=1)
-    y = df["Outcome"]
+
+    # Clean column names (removes hidden spaces)
+    df.columns = df.columns.str.strip()
+
+    # Automatically use last column as target
+    target_column = df.columns[-1]
+
+    X = df.drop(columns=[target_column])
+    y = df[target_column]
 
     model = RandomForestClassifier(random_state=42)
     model.fit(X, y)
 
     return model
-
-model = load_model()
 
 # -------------------------------------------------
 # CLEAN MODERN CSS (Neutral Colors + Animations)
