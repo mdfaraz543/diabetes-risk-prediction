@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import time
-from sklearn.ensemble import RandomForestClassifier
+import joblib
 
 # -------------------------------------------------
 # PAGE CONFIG
@@ -19,27 +19,8 @@ st.set_page_config(
 # -------------------------------------------------
 @st.cache_resource
 def load_model():
-    df = pd.read_csv("data/diabetes.csv", header=None)
+    return joblib.load("best_model.joblib")
 
-    df.columns = [
-        "Pregnancies",
-        "Glucose",
-        "BloodPressure",
-        "SkinThickness",
-        "Insulin",
-        "BMI",
-        "DiabetesPedigreeFunction",
-        "Age",
-        "Outcome"
-    ]
-
-    X = df.drop(columns=["Outcome"])
-    y = df["Outcome"]
-
-    model = RandomForestClassifier(random_state=42)
-    model.fit(X, y)
-
-    return model
 model = load_model()
 # -------------------------------------------------
 # CLEAN MODERN CSS (Neutral Colors + Animations)
@@ -287,7 +268,7 @@ with right:
 
         input_df = input_df[expected_columns]
         # Ensure correct column order
-        input_df = input_df[model.feature_names_in_]
+        input_df = input_df.reindex(columns=model.feature_names_in_)
 
         # Convert safely to numeric
         input_df = input_df.apply(pd.to_numeric, errors="coerce")
