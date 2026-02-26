@@ -19,16 +19,22 @@ st.set_page_config(
 # -------------------------------------------------
 @st.cache_resource
 def load_model():
-    df = pd.read_csv("data/diabetes.csv")
+    df = pd.read_csv("data/diabetes.csv", header=None)
 
-    # Clean column names (removes hidden spaces)
-    df.columns = df.columns.str.strip()
+    df.columns = [
+        "Pregnancies",
+        "Glucose",
+        "BloodPressure",
+        "SkinThickness",
+        "Insulin",
+        "BMI",
+        "DiabetesPedigreeFunction",
+        "Age",
+        "Outcome"
+    ]
 
-    # Automatically use last column as target
-    target_column = df.columns[-1]
-
-    X = df.drop(columns=[target_column])
-    y = df[target_column]
+    X = df.drop(columns=["Outcome"])
+    y = df["Outcome"]
 
     model = RandomForestClassifier(random_state=42)
     model.fit(X, y)
@@ -280,7 +286,14 @@ with right:
         ]
 
         input_df = input_df[expected_columns]
-        input_df = input_df.reindex(columns=model.feature_names_in_)
+        # Ensure correct column order
+        input_df = input_df[model.feature_names_in_]
+
+        # Convert safely to numeric
+        input_df = input_df.apply(pd.to_numeric, errors="coerce")
+
+        # Replace any possible NaN (extra safety)
+        input_df = input_df.fillna(0)
         probability = model.predict_proba(input_df)[0][1] * 100
 
         if probability < 40:
