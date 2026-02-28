@@ -10,9 +10,6 @@ Built using Python, Scikit-learn, and Streamlit with a clean and interactive use
 
 ---
 
-## 🚀 Live Demo
-[🚀 Live Demo: (Deployment in Progress)](https://diabetes-risk-prediction-hwvxdbpnxircxpxgvplhns.streamlit.app/)
-
 ---
 
 ## 📌 Project Overview
